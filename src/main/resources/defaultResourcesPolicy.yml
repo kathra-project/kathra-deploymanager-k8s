@@ -1,0 +1,39 @@
+limitRanges: |
+  apiVersion: v1
+  kind: LimitRange
+  metadata:
+    name: limits
+  spec:
+    limits:
+    - default:
+        cpu: 300m
+        memory: 512Mi
+      defaultRequest:
+        cpu: 50m
+        memory: 256Mi
+      type: Container
+computeResources: |
+  apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: compute-resources
+  spec:
+    hard:
+      limits.cpu: "15"
+      limits.memory: 10Gi
+      pods: "15"
+      requests.cpu: "10"
+      requests.memory: 5Gi
+objectCounts: |
+  apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: object-counts
+  spec:
+    hard:
+      configmaps: "20"
+      persistentvolumeclaims: "4"
+      replicationcontrollers: "20"
+      secrets: "10"
+      services: "15"
+      services.loadbalancers: "15"
