@@ -8,5 +8,5 @@ before_script:
 build_image:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com/
-    - docker build -t registry.gitlab.com/kathra/kathra/kathra-services/kathra-deploymanager/kathra-deploymanager-java/kathra-deploymanager-k8s:latest .
-    - docker push registry.gitlab.com/kathra/kathra/kathra-services/kathra-deploymanager/kathra-deploymanager-java/kathra-deploymanager-k8s:latest
+    - docker build -t registry.gitlab.com/kathra/kathra/kathra-services/kathra-deploymanager/deploymanager-java/kathra-deploymanager-k8s:latest .
+    - docker push registry.gitlab.com/kathra/kathra/kathra-services/kathra-deploymanager/deploymanager-java/kathra-deploymanager-k8s:latest
