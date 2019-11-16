@@ -1,0 +1,9 @@
+/kathra-deploymanager-k8s.iml
+/.project
+/.classpath
+/.settings/
+/.idea/
+/.project
+/.classpath
+*.iml
+/target

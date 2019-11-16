@@ -117,7 +117,10 @@ public class DeployManagerController extends RouteBuilder implements DeployManag
                         String expose = labels.get("expose");
                         if (expose != null && expose.equals("true")) {
                             deployServiceIngress(namespace, metadata.getName());
+                            deployServiceIngressV2(namespace, metadata.getName());
                         }
+
+
                     }
 
                     Map<String, String> annotations = k8sResource.getMetadata().getAnnotations();
@@ -218,6 +221,19 @@ public class DeployManagerController extends RouteBuilder implements DeployManag
                 .addToLabels("ingress", "plain").endMetadata()
                 .withNewSpec().addNewRule()
                 .withHost(serviceName + "." + platformName + "." + config.getTopLevelDomain())
+                .withNewHttp().addNewPath().withNewBackend()
+                .withServiceName(serviceName)
+                .withServicePort(new IntOrString(80)).endBackend().endPath().endHttp().endRule().endSpec().done();
+    }
+
+    private void deployServiceIngressV2(String platformName, String serviceName) {
+        client.extensions().ingresses()
+                .inNamespace(platformName).createOrReplaceWithNew().withNewMetadata()
+                .withName(serviceName+"-workaround")
+                .addToAnnotations("kubernetes.io/ingress.class", "traefik")
+                .addToLabels("ingress", "plain").endMetadata()
+                .withNewSpec().addNewRule()
+                .withHost(serviceName + "-" + platformName + "-svc." + config.getTopLevelDomain())
                 .withNewHttp().addNewPath().withNewBackend()
                 .withServiceName(serviceName)
                 .withServicePort(new IntOrString(80)).endBackend().endPath().endHttp().endRule().endSpec().done();
