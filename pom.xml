@@ -27,12 +27,12 @@
     <artifactId>kathra-deploymanager-k8s</artifactId>
     <packaging>jar</packaging>
     <name>KATHRA :: DeployManager :: K8s</name>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <parent>
         <groupId>org.kathra</groupId>
         <artifactId>kathra-exec-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0-SNAPSHOT</version>
         
     </parent>
 
@@ -62,7 +62,7 @@
         <dependency>
             <groupId>org.kathra</groupId>
             <artifactId>kathra-deploymanager-interface</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.fabric8</groupId>
